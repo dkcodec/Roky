@@ -1,0 +1,34 @@
+.container {
+  padding: 20px;
+}
+
+.searchBar {
+  margin-bottom: 20px;
+  padding: 10px;
+  width: 70%;
+}
+
+.userList {
+  list-style-type: none;
+  padding: 0;
+}
+
+.userLinks {
+  margin-top: 20px;
+  color: white;
+  text-decoration: none;
+}
+
+.userCard {
+  margin: 10px 0;
+}
+
+.pagination {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 20px;
+}
+
+.userButton {
+  padding: 10px;
+}
