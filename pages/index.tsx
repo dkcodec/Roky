@@ -6,27 +6,59 @@ import styles from '../styles/Home.module.css'
 
 const Home = () => {
   const [users, setUsers] = useState([])
+  const [filteredUsers, setFilteredUsers] = useState([])
   const [page, setPage] = useState(1)
   const [searchTerm, setSearchTerm] = useState('')
 
   useEffect(() => {
     fetchUsers()
-  }, [page, searchTerm])
+  }, [page])
+
+  useEffect(() => {
+    filterUsers()
+  }, [searchTerm, users])
 
   const fetchUsers = async () => {
-    const response = await axios.get(
-      `https://randomuser.me/api/?page=${page}&results=10&seed=abc&name=${searchTerm}`
+    try {
+      const response = await axios.get(`https://randomuser.me/api/`, {
+        params: {
+          page,
+          results: 10,
+          seed: 'abc',
+          inc: 'name,login',
+        },
+      })
+      setUsers(response.data.results)
+      setFilteredUsers(response.data.results)
+    } catch (error) {
+      console.error('Error fetching users:', error)
+    }
+  }
+
+  const filterUsers = () => {
+    if (!searchTerm) {
+      setFilteredUsers(users)
+      return
+    }
+
+    const filtered = users.filter((user: any) =>
+      `${user.name.first} ${user.name.last}`
+        .toLowerCase()
+        .includes(searchTerm.toLowerCase())
     )
-    setUsers(response.data.results)
+    setFilteredUsers(filtered)
   }
 
   return (
     <div className={styles.container}>
       <SearchBar searchTerm={searchTerm} setSearchTerm={setSearchTerm} />
       <ul className={styles.userList}>
-        {users.map((user: any) => (
-          <UserCard key={user.login.uuid} user={user} />
-        ))}
+        {filteredUsers.map(
+          (user: any) => (
+            console.log('User:', user),
+            (<UserCard key={user.login.uuid} user={user} />)
+          )
+        )}
       </ul>
       <div className={styles.pagination}>
         <button

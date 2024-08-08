@@ -9,9 +9,9 @@ const UserCard: React.FC<UserCardProps> = ({ user }) => {
   return (
     <li className={styles.userCard}>
       <Link href={`/user/${user.login.uuid}`} legacyBehavior>
-        <span className={styles.userLinks}>
+        <a>
           {user.name.first} {user.name.last}
-        </span>
+        </a>
       </Link>
     </li>
   )

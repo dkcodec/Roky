@@ -9,6 +9,8 @@ const User = ({ user }: any) => {
 
   if (!user) return <div>Loading...</div>
 
+  console.log('UserBYID:', user)
+
   return (
     <div className={styles.container}>
       <h1>
@@ -22,8 +24,8 @@ const User = ({ user }: any) => {
         Address: {user.location.street.name}, {user.location.city},{' '}
         {user.location.country}
       </p>
-      <Link href='/'>
-        <span className={styles.userLinks}>Back to Home</span>
+      <Link href='/' legacyBehavior>
+        <a>Back to Home</a>
       </Link>
     </div>
   )
@@ -31,7 +33,13 @@ const User = ({ user }: any) => {
 
 export async function getServerSideProps(context: any) {
   const { id } = context.params
-  const response = await axios.get(`https://randomuser.me/api/?uuid=${id}`)
+  const response = await axios.get(`https://randomuser.me/api/`, {
+    params: {
+      seed: id,
+      results: 1,
+      inc: 'name,dob,gender,email,phone,location,login',
+    },
+  })
   const user = response.data.results[0]
 
   return {
