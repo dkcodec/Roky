@@ -66,7 +66,7 @@ const Home: React.FC = () => {
           onClick={() => setPage(page - 1)}
           disabled={page === 1}
         >
-          Previous {'>'}
+          {'<'} Previous
         </button>
         <button className={styles.userButton} onClick={() => setPage(page + 1)}>
           Next {'>'}
