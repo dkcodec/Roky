@@ -4,7 +4,7 @@ import UserCard from '../components/UserCard'
 import SearchBar from '../components/SearchBar'
 import styles from '../styles/Home.module.css'
 
-const Home = () => {
+const Home: React.FC = () => {
   const [users, setUsers] = useState([])
   const [filteredUsers, setFilteredUsers] = useState([])
   const [page, setPage] = useState(1)

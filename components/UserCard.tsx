@@ -3,7 +3,18 @@ import styles from '../styles/Home.module.css'
 import Image from 'next/image'
 
 interface UserCardProps {
-  user: any
+  user: {
+    login: {
+      uuid: string
+    }
+    name: {
+      first: string
+      last: string
+    }
+    picture: {
+      large: string
+    }
+  }
 }
 
 const UserCard: React.FC<UserCardProps> = ({ user }) => {
