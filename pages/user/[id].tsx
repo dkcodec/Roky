@@ -2,6 +2,7 @@ import { useRouter } from 'next/router'
 import Link from 'next/link'
 import axios from 'axios'
 import styles from '../../styles/User.module.css'
+import Image from 'next/image'
 
 const User = ({ user }: any) => {
   const router = useRouter()
@@ -13,19 +14,36 @@ const User = ({ user }: any) => {
 
   return (
     <div className={styles.container}>
-      <h1>
-        {user.name.first} {user.name.last}
-      </h1>
-      <p>Age: {user.dob.age}</p>
-      <p>Gender: {user.gender}</p>
-      <p>Email: {user.email}</p>
-      <p>Phone: {user.phone}</p>
+      <div className={styles.title}>
+        <Image
+          src={user.picture.large}
+          alt='User image'
+          width={100}
+          height={100}
+          className={styles.image}
+        />
+        <h1>
+          {user.name.first} {user.name.last}
+        </h1>
+      </div>
       <p>
-        Address: {user.location.street.name}, {user.location.city},{' '}
+        <b>Age:</b> {user.dob.age}
+      </p>
+      <p>
+        <b>Gender:</b> {user.gender}
+      </p>
+      <p>
+        <b>Email:</b> {user.email}
+      </p>
+      <p>
+        <b>Phone:</b> {user.phone}
+      </p>
+      <p>
+        <b>Address:</b> {user.location.street.name}, {user.location.city},{' '}
         {user.location.country}
       </p>
       <Link href='/' legacyBehavior>
-        <a>Back to Home</a>
+        <a className={styles.backHome}>Back to Home</a>
       </Link>
     </div>
   )
@@ -37,7 +55,7 @@ export async function getServerSideProps(context: any) {
     params: {
       seed: id,
       results: 1,
-      inc: 'name,dob,gender,email,phone,location,login',
+      inc: 'name,dob,gender,email,phone,location,login,picture',
     },
   })
   const user = response.data.results[0]

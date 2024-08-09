@@ -1,6 +1,12 @@
+:root {
+  --accent: rgb(43, 142, 255);
+  --card: rgb(42, 42, 42);
+}
+
 body {
   margin: 0;
   padding: 0;
+  box-sizing: border-box;
   background-color: black;
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto,
     'Helvetica Neue', Arial, 'Noto Sans', sans-serif, 'Apple Color Emoji',

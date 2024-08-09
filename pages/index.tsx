@@ -25,7 +25,7 @@ const Home = () => {
           page,
           results: 10,
           seed: 'abc',
-          inc: 'name,login',
+          inc: 'name,login,picture',
         },
       })
       setUsers(response.data.results)
@@ -66,10 +66,10 @@ const Home = () => {
           onClick={() => setPage(page - 1)}
           disabled={page === 1}
         >
-          Previous
+          Previous {'>'}
         </button>
         <button className={styles.userButton} onClick={() => setPage(page + 1)}>
-          Next
+          Next {'>'}
         </button>
       </div>
     </div>

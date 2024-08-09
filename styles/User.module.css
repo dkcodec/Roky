@@ -3,8 +3,28 @@
   color: white;
 }
 
+.image {
+  border-radius: 20%;
+  margin-right: 20px;
+}
+
+.title {
+  display: flex;
+  align-items: center;
+  font-weight: bold;
+}
+
 .userLinks {
   margin-top: 20px;
   color: white;
+  text-decoration: none;
+}
+
+.backHome {
+  display: flex;
+  margin-top: 20px;
+  justify-content: center;
+  align-items: center;
+  color: var(--accent);
   text-decoration: none;
 }
